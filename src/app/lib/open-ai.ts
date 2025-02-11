@@ -5,7 +5,7 @@ interface AIResponse {
 export default async function fetchGeneratedPostFromAI(
   content: string
 ): Promise<AIResponse> {
-  const prompt: string = `Generate an insightful LinkedIn post about the contents of this blog post: ${content}. It should refer to the blog post directly by saying somethign like "interesting post here on X" be a maximum of 3 sentences.`;
+  const prompt: string = `Generate an insightful LinkedIn post about the contents of this blog post: ${content}. It should refer to the blog post directly by saying something like "interesting post here on X" be a maximum of 3 sentences.`;
 
   const response: Response = await fetch(
     "https://api.openai.com/v1/chat/completions",
@@ -21,7 +21,7 @@ export default async function fetchGeneratedPostFromAI(
           {
             role: "system",
             content:
-              "You are a top class software engineering manager with over 10 years experience. You have a wealth of software engineering knowledge and are an excellent people manager and strategic thinker.",
+              "You are an experienced software engineering manager with over 10 years experience. You have a wealth of software engineering knowledge and are an excellent people manager and strategic thinker.",
           },
           {
             role: "user",
