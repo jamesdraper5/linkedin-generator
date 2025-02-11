@@ -3,15 +3,15 @@
 import parsePost from "@/app/lib/parser";
 import fetchGeneratedPostFromAI from "@/app/lib/open-ai";
 
-interface Bla {
+interface PostState {
   status: string;
   data: string;
 }
 
 export async function createPostFromUrl(
-  prevState: Bla | null,
+  prevState: PostState | null,
   formData: FormData
-): Promise<Bla> {
+): Promise<PostState> {
   const url = formData.get("url");
   if (typeof url !== "string") {
     return {
