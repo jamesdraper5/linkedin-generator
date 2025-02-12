@@ -2,6 +2,7 @@
 
 import { createPostFromUrl } from "@/app/actions";
 import { useActionState } from "react";
+import CopyToClipboard from "@/app/ui/copy-to-clipboard";
 
 function SubmitButton({ isPending }: { isPending: boolean }) {
   return (
@@ -43,6 +44,7 @@ export default function GeneratorForm() {
     createPostFromUrl,
     null
   );
+
   return (
     <div>
       <form action={formAction} className="max-w-sm mx-auto">
@@ -60,10 +62,18 @@ export default function GeneratorForm() {
         </div>
         <SubmitButton isPending={isPending} />
 
-        {state?.status === "success" && (
+        {state !== null && state.status === "success" && (
           <div className="my-20">
-            <h3 className="text-base/7 font-semibold">Your Post</h3>
-            <p>{state?.data}</p>
+            <div className="flex justify-between">
+              <h3 className="text-base/7 font-semibold">Your Post</h3>
+              <span>
+                <CopyToClipboard
+                  className="size-4 text-gray-400 cursor-pointer"
+                  text={state.data}
+                />
+              </span>
+            </div>
+            <p>{state.data}</p>
           </div>
         )}
       </form>
